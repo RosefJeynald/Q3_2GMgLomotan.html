@@ -1,20 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="1st Graded Exercise" />
-    <meta name="keywords" content="HTML basic tags" />
-    <meta name="author" content="RJ Lomotan" />
-    <title> Minecraft Mobs </title>
-    <link rel = "icon" href = "../assets/minecraft-logo.png" type = "image/png">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
+    <meta name="description" content="Q3 2nd Graded Exercise">
+    <meta name="keywords" content="HTML Forms">
+    <meta name="author" content="RJ Lomotan">
+    <title>3Q - 2nd Graded</title>
 
-    <body>
+  <style>
 
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #9be0f5, #d6f5ff);
+      font-family: Arial, sans-serif;
+    }
 
+    section {
+      text-align: center;
+    }
 
+    h1 {
+      color: #2ba7e4;
+    }
 
-    </body>
+    form {
+      width: 420px;
+      padding: 20px;
+      border: 2px solid #0077cc;
+      border-radius: 12px;
+      background-color: #e7f5fd;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border: 2px solid #0077cc;
+      background-color: #e6f2ff;
+    }
+
+  </style>
+
+  </head>
+
+  <body>
+    <section>
+      <h1> Sign-up Page </h1>
+      <form action="submit" method="post" 
+            onsubmit="return confirmSubmit()" 
+            onreset="return confirmReset()">
+
+        <fieldset>
+          <legend>Your Credentials</legend><br/>
+
+          <label> Student ID : 
+            <input type="number" name="id" id="id" required onblur="checkEmpty(this)" />
+          </label><br/><br/>
+
+          <label> Full Name :
+            <input type="text" name="fname" id="fname" required onblur="checkEmpty(this)" />
+          </label><br/><br/>
+
+          <label> Birthday :
+            <input type="date" name="birth" id="birth" onblur="checkEmpty(this)" />
+          </label><br/><br/>
+
+          <label> Email Address :
+            <input type="email" name="email" id="email" required onblur="checkEmpty(this)" />
+          </label><br/><br/>
+        </fieldset>
+
+        <fieldset>
+          <legend>Extra Credentials</legend><br/>
+
+          <label> Grade Level :
+            <select name="grade" id="grade" required>
+              <option value="seven">7</option>
+              <option value="eight">8</option>
+              <option value="nine">9</option>
+              <option value="ten">10</option>
+              <option value="eleven">11</option>
+              <option value="twelve">12</option>
+          </label><br/><br/>
+
+          <label> Intern / Extern :
+            <input type="radio" name="i/e" value="Intern" required /> Intern
+            <input type="radio" name="i/e" value="Extern" required /> Extern
+          </label><br/><br/>
+
+          <label> Preferred Organization / Club :
+            <select name="club" id="club" required>
+              <option value="chemistry">Chemistry</option>
+              <option value="physics">Physics</option>
+              <option value="book">Book</option>
+              <option value="arts">Arts</option>
+              <option value="coding">Coding</option>
+          </label><br/><br/>
+        </fieldset>
+        
+        <fieldset>
+          <input type="checkbox" name="dp" id="dp" value="true" /> 
+          </label><br/><br/>
+        </fieldset>
+
+        <fieldset>
+          <label> Why Do You Want To Join? : 
+              <textarea name="join" id="join" required onblur="checkEmpty(this)"></textarea>
+          </label><br/><br/>
+
+          <legend>Action Buttons</legend>
+          <button type="submit"> Accept </button>
+          <input type="reset" value=" Clear " />
+        </fieldset>   
+      </form>
+
+    </section>
+    <script>
+      function confirmSubmit() {
+        return confirm("Are you sure you want to submit?");
+      }
+
+      function confirmReset() {
+        return confirm("Are you sure you want to clear the information?");
+      }
+
+      function checkEmpty(element) {
+        if (element.value.trim() === "") {
+          element.style.border = "2px solid red";
+          element.style.backgroundColor = "#ffe6e6";
+        } 
+      }
+    </script>
+  </body>
 </html>
