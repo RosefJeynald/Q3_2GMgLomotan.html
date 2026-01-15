@@ -66,7 +66,7 @@
           </label><br/><br/>
 
           <label> Birthday :
-            <input type="date" name="birth" id="birth" onblur="checkEmpty(this)" />
+            <input type="date" name="birth" id="birth" required onblur="checkEmpty(this)" />
           </label><br/><br/>
 
           <label> Email Address :
@@ -76,6 +76,10 @@
 
         <fieldset>
           <legend>Extra Credentials</legend><br/>
+
+          <label> Mobile Phone Number :
+            <input type="text" name="number" id="number" required onblur="checkEmpty(this)" />
+          </label><br/><br/>
 
           <label> Grade Level :
             <select name="grade" id="grade" required>
