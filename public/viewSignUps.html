@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Sign-ups</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: linear-gradient(135deg, #fce4ec, #ffe6f0);
+    }
+    h1 { color: #e91e63; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    table, th, td { border: 1px solid #e91e63; }
+    th, td { padding: 8px; text-align: left; }
+    th { background-color: #f8bbd0; }
+    select, button { padding: 6px; margin: 5px 0; border-radius: 5px; }
+    button { background-color: #e91e63; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #c2185b; }
+    p { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>View Sign-ups</h1>
+
+  <label>Filter by Club:
+    <select id="clubFilter" onchange="renderTable()">
+      <option value="all">All</option>
+      <option value="chemistry">Chemistry</option>
+      <option value="physics">Physics</option>
+      <option value="book">Book</option>
+      <option value="arts">Arts</option>
+      <option value="coding">Coding</option>
+    </select>
+  </label>
+  <a href="https://rosefjeynald.github.io/Q3_2GMgLomotan.html/public/3Q3GMgLOMOTAN.html"> Go Back </a>
+
+  <div id="tableContainer"></div>
+
+<script>
+function getSignups() {
+  return JSON.parse(localStorage.getItem("clubSignups")) || [];
+}
+
+function renderTable() {
+  const container = document.getElementById("tableContainer");
+  const club = document.getElementById("clubFilter").value;
+  const signups = getSignups();
+
+  if (signups.length === 0) {
+    container.innerHTML = "<p>No sign-ups found in local storage.</p>";
+    return;
+  }
+
+  let filtered = club === "all" ? signups : signups.filter(s => s.club === club);
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<p>No sign-ups found for the selected club: ${club}</p>`;
+    return;
+  }
+
+  let html = "<table><tr><th>ID</th><th>Name</th><th>Birthday</th><th>Email</th><th>Grade</th><th>Intern/Extern</th><th>Club</th><th>Reason</th></tr>";
+
+  filtered.forEach(s => {
+    html += `<tr>
+      <td>${s.id}</td>
+      <td>${s.fname}</td>
+      <td>${s.birth}</td>
+      <td>${s.email}</td>
+      <td>${s.grade}</td>
+      <td>${s.ie}</td>
+      <td>${s.club}</td>
+      <td>${s.join}</td>
+    </tr>`;
+  });
+
+  html += "</table>";
+  html += `<p>Total Sign-ups: ${filtered.length}</p>`;
+  container.innerHTML = html;
+}
+
+// render
+renderTable();
+</script>
+</body>
+</html>
