@@ -38,6 +38,11 @@
       font-size: 20px
     }
 
+    h3 {
+      text-align: center;
+      font-size: 20px
+    }
+
     b {
       font-size: 20px;
     }
@@ -79,6 +84,29 @@
 
     button:hover {
       background-color: #7fbcf9;
+    }
+
+    .movie-item {
+      background: #eeeeee;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .delete-btn {
+      background-color: crimson;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .delete-btn:hover {
+      background-color: darkred;
     }
 
     .movie-item {
@@ -150,14 +178,18 @@
 
       <h3>Movie List</h3>
       <div id="movieList"></div>
+      <h3>Movie List</h3>
+      <div id="movieList"></div>
 
   </form>
 </section>
 
 <script>
   
+  
 let rating = 0;
 const stars = document.querySelectorAll(".star");
+const movieList = document.getElementById("movieList");
 const movieList = document.getElementById("movieList");
 
 //star checker
@@ -179,11 +211,23 @@ function displayMovies() {
 
   movies.forEach((movie, index) => {
 
+  movies.forEach((movie, index) => {
+
     const div = document.createElement("div");
     div.className = "movie-item";
 
     const starDisplay = "★".repeat(movie.rating);
+    div.className = "movie-item";
 
+    const starDisplay = "★".repeat(movie.rating);
+
+    div.innerHTML = `
+      <span>
+      ${movie.title} (${movie.year}) - ${movie.genre}, Rating:
+      <span style="color:gold;">${starDisplay}</span>
+      </span>
+      <button class="delete-btn" onclick="deleteMovie(${index})">Delete</button>
+    `;
     div.innerHTML = `
       <span>
       ${movie.title} (${movie.year}) - ${movie.genre}, Rating:
